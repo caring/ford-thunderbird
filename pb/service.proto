@@ -1,0 +1,52 @@
+syntax = "proto3";
+package ford-thunderbird;
+
+option go_package = "pb";
+
+service FordThunderbirdService {
+  rpc Ping (PingRequest)                  returns (PingResponse);
+  rpc CreateThunderbird(CreateThunderbirdRequest) returns (ThunderbirdResponse) {}
+  rpc UpdateThunderbird(UpdateThunderbirdRequest) returns (ThunderbirdResponse) {}
+  rpc DeleteThunderbird(ByIDRequest)          returns (ThunderbirdResponse) {}
+  rpc GetThunderbird(ByIDRequest)             returns (ThunderbirdResponse) {}
+}
+
+// #################################
+//          Ping
+// #################################
+
+message PingRequest {
+  string data = 1;
+}
+
+message PingResponse {
+  string data = 1;
+}
+
+// #################################
+//          Shared Messages
+// #################################
+message ByIDRequest {
+  string id = 1;
+}
+
+message LoadKeyRequest {
+  repeated string keys = 1;
+}
+
+// #################################
+//          Thunderbird
+// #################################
+message ThunderbirdResponse {
+  string id = 1;
+  string name = 2;
+}
+
+message CreateThunderbirdRequest {
+  string name = 1;
+}
+
+message UpdateThunderbirdRequest {
+  string id = 1;
+  string name = 2;
+}
